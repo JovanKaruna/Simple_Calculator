@@ -1,5 +1,5 @@
 # Tubes_OOP_Calculator
-This project is to make a calculator with GUI using Object-Oriented Programming
+This project is used to make calculator with GUI using Object-Oriented Programming
 
 ## Using
 We are using ... language and ... framework
