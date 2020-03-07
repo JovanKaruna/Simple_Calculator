@@ -1,42 +1,45 @@
 class Button {
-  String label; // button label
-  PVector pos;
+  String label;
+  PVector pos, size;
   color c;
-  float x;      // top left corner x position
-  float y;      // top left corner y position
-  float w;      // width of button
-  float h;      // height of button
+  float roundness;
   
   // constructor
+  Button(float xpos, float ypos, float widthB, float heightB){
+      this("", xpos, ypos, widthB, heightB);
+  }
+
   Button(String labelB, float xpos, float ypos, float widthB, float heightB) {
-    label = labelB;
-    c = color(200, 0, 0);
-    x = xpos;
-    y = ypos;
-    w = widthB;
-    h = heightB;
+    this(labelB, xpos, ypos, widthB, heightB, 10);
+  }
+
+  Button(String labelB, float xpos, float ypos, float widthB, float heightB, float roundnessB) {
+    this.label = labelB;
+    this.c = RED;
+    this.pos = new PVector(xpos, ypos);
+    this.size = new PVector(widthB, heightB);
+    this.roundness = roundnessB;
   }
   
-  void Draw() {
-    if(this.MouseIsOver()){
-      fill(color(0, 200, 0));
-      if(mousePressed){
-        fill(color(0, 0, 200));
-      }
+  public void display() {
+    if(this.onHover()){
+        if(mousePressed){
+          this.c = color(200, 130, 5);
+        } else {
+          this.c = color(240, 170, 30);
+        }
     } else {
-    fill(c);
+        this.c = ORANGE;
     }
-    stroke(11);
-    rect(x, y, w, h, 10);
-    textAlign(CENTER, CENTER);
-    fill(0);
-    text(label, x + (w / 2), y + (h / 2));
+
+    fill(this.c);
+    rect(this.pos.x, this.pos.y, this.size.x, this.size.y, this.roundness);
+    fill(BLACK);
+    text(this.label, this.pos.x + (this.size.x / 2), this.pos.y + (this.size.y / 2));
   }
   
-  boolean MouseIsOver() {
-    if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
-      return true;
-    }
-    return false;
+  public boolean onHover() {
+    return (mouseX > this.pos.x && mouseX < (this.pos.x + this.size.x) &&
+            mouseY > this.pos.y && mouseY < (this.pos.y + this.size.y));
   }
 }
