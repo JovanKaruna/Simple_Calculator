@@ -3,10 +3,54 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>Calculator</title>
   </head>
   <body>
-    <canvas data-processing-sources="Main.pde View.pde ButtonBuilder.pde Button.pde TextBox.pde"></canvas>
+    CALCULATOR
+    <canvas data-processing-sources="
+    app/Main.java
+    app/View.java
+    app/TextBox.java
+
+    app/button/ButtonBuilder.java
+    app/button/Button.java
+    app/button/FunctionButton.java
+    app/button/NonFunctionButton.java
+    app/button/NumberButton.java
+
+    app/button/functions/Function.java
+    app/button/functions/AC.java
+    app/button/functions/C.java
+    app/button/functions/Equal.java
+    app/button/functions/MC.java
+    app/button/functions/MR.java
+    
+    app/exception/ArithmeticException.java
+    app/exception/OverflowException.java
+    app/exception/ZeroDivisionException.java
+    app/exception/SquareRootOfNegativeException.java
+
+    app/expression/Expression.java
+    app/expression/IUnaryExpression.java
+    app/expression/NegativeExpression.java
+    app/expression/RootExpression.java
+    app/expression/IBinaryExpression.java
+    app/expression/AdditionExpression.java
+    app/expression/SubtractionExpression.java
+    app/expression/MultiplicationExpression.java
+    app/expression/DivisionExpression.java
+    app/expression/TerminalExpression.java
+    "></canvas>
+    TEST
+    <canvas data-processing-sources="
+    app/Test.java
+    app/button/Button.java
+    app/button/NonFunctionButton.java
+    app/button/functions/Function.java
+    app/button/functions/MC.java
+    app/button/FunctionButton.java
+    app/View.java
+    "> </canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
-color bgColor = color(200);
+package app;
+
+color bgColor = color(220);
 color RED = color(220, 30, 30);
-color ORANGE = color(230, 150, 10);
 color BLACK = color(0);
 
 public class View{
@@ -19,7 +20,7 @@ public class View{
     this.padding = 0.04;
     this.btnWeight = 3;
     this.textBoxWeight = 1;
-    this.colSize = 4;
+    this.colSize = 5;
     this.btnPad = 0.03;
     
     this.textBoxPos = new PVector(this.padding*width, this.padding*height);
@@ -32,11 +33,23 @@ public class View{
     
     this.buttons = new ButtonBuilder(this.btnPos.x, this.btnPos.y, this.btnSize.x, this.btnSize.y, this.colSize, this.btnPad*width)
                   .setLabel(new String[]{
-                      "7", "8", "9", "+",
-                      "4", "5", "6", "x",
-                      "1", "2", "3", "/",
-                      "0", ".", "=", "-"
+                      "(", ")", "ans", "C","AC",
+                      "7", "8", "9", "÷", "MC",
+                      "4", "5", "6", "x", "MR",
+                      "1", "2", "3", "+", "√",
+                      "0", ".", "=", "-", "^"
                   })
+                  .setOps(new String[]{
+                    "+", "-", "x", "÷", "(", ")", "ans", "√", "^"
+                  })
+                  .setNumbers(new String[]{
+                    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."
+                  })
+                  .setFunction("C", new C())
+                  .setFunction("AC", new AC())
+                  .setFunction("MR", new MR())
+                  .setFunction("MC", new MC())
+                  .setFunction("=", new Equal())
                   .build();
   }
 
