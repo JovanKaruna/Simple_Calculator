@@ -65,7 +65,9 @@ class ExpressionBuilder{
   }
 
   private boolean endsWithZeros(String s){
-    for(char c: s.substring(min(2, s.length())).toCharArray()){
+    int x = s.indexOf(".");
+    if(x == -1) return false;
+    for(char c: s.substring(x+1).toCharArray()){
       if(c != '0'){
         return false;
       }
@@ -75,14 +77,18 @@ class ExpressionBuilder{
 
   private Expression parseUtil(String inp) throws ConversionException{
     i++;
-    
+
     // basis
     if(inp.length() == 0){
       throw new ConversionException("Expression incomplete");
     }
     
-    if(inp.equals(str(float(inp))) || this.endsWithZeros(inp)){ // ganti krn 2.0000 != 2
+    if(!Float.isNaN(float(inp))){
       return new TerminalExpression(float(inp));
+    }
+    //System.out.println(inp.substring(0));
+    if(inp.charAt(0) == '&' && (inp.equals(str(float(inp.substring(1)))) || this.endsWithZeros(inp.substring(1)))){
+      return new NegativeExpression(new TerminalExpression(float(inp.substring(1))));
     }
     if(inp.equals("ans")){
       if(lastAns.length() == 0){
@@ -90,7 +96,7 @@ class ExpressionBuilder{
       } else {
         return new TerminalExpression(float(lastAns));
       }
-    } else if(inp.equals("-ans")){
+    } else if(inp.equals("&ans")){
       if(lastAns.length() == 0){
         throw new ConversionException("Ans is empty");
       } else {
