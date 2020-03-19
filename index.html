@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Calculator</title>
-  </head>
-  <body>
-    CALCULATOR
-    <canvas data-processing-sources="
-    app/Main.java
-    app/View.java
-    app/TextBox.java
 
-    app/button/ButtonBuilder.java
-    app/button/Button.java
-    app/button/FunctionButton.java
-    app/button/NonFunctionButton.java
-    app/button/NumberButton.java
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Calculator</title>
+</head>
 
-    app/button/functions/Function.java
-    app/button/functions/AC.java
-    app/button/functions/C.java
-    app/button/functions/Equal.java
-    app/button/functions/MC.java
-    app/button/functions/MR.java
+<body>
+	<canvas data-processing-sources="
+    Main/Main.pde
+    Main/View.pde
+    Main/TextBox.pde
+
+    Main/button/ButtonBuilder.pde
+    Main/button/Button.pde
+    Main/button/FunctionButton.pde
+    Main/button/NonFunctionButton.pde
+    Main/button/NumberButton.pde
+
+    Main/button/functions/Function.pde
+    Main/button/functions/AC.pde
+    Main/button/functions/C.pde
+    Main/button/functions/Equal.pde
+    Main/button/functions/MC.pde
+    Main/button/functions/MR.pde
+    Main/button/functions/OFF.pde
     
-    app/exception/ArithmeticException.java
-    app/exception/OverflowException.java
-    app/exception/ZeroDivisionException.java
-    app/exception/SquareRootOfNegativeException.java
+    Main/exception/Exception.pde
+    Main/exception/ArithmeticException.pde
+    Main/exception/ConversionException.pde
+    Main/exception/OverflowException.pde
+    Main/exception/ZeroDivisionException.pde
+    Main/exception/SquareRootOfNegativeException.pde
 
-    app/expression/Expression.java
-    app/expression/IUnaryExpression.java
-    app/expression/NegativeExpression.java
-    app/expression/RootExpression.java
-    app/expression/IBinaryExpression.java
-    app/expression/AdditionExpression.java
-    app/expression/SubtractionExpression.java
-    app/expression/MultiplicationExpression.java
-    app/expression/DivisionExpression.java
-    app/expression/TerminalExpression.java
+    Main/expression/Expression.pde
+    Main/expression/ExpressionBuilder.pde
+    Main/expression/UnaryExpression.pde
+    Main/expression/NegativeExpression.pde
+    Main/expression/RootExpression.pde
+    Main/expression/BinaryExpression.pde
+    Main/expression/AddExpression.pde
+    Main/expression/SubtractExpression.pde
+    Main/expression/MultiplyExpression.pde
+    Main/expression/DivideExpression.pde
+    Main/expression/PowerExpression.pde
+    Main/expression/ModuloExpression.pde
+    Main/expression/TerminalExpression.pde
     "></canvas>
-    TEST
-    <canvas data-processing-sources="
-    app/Test.java
-    app/button/Button.java
-    app/button/NonFunctionButton.java
-    app/button/functions/Function.java
-    app/button/functions/MC.java
-    app/button/FunctionButton.java
-    app/View.java
-    "> </canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
-  </body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js">
+	</script>
+</body>
+
 </html>

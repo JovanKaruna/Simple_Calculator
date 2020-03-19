@@ -1,5 +1,5 @@
 class MC implements Function{
   void go(){
-    background(0,255,0);
+    background(0,255,0); // reset memory
   }
 }

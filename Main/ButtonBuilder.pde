@@ -1,5 +1,3 @@
-package button;
-
 import java.util.HashMap;
 
 // create array of buttons using Builder Pattern
@@ -29,7 +27,7 @@ class ButtonBuilder{
 
   public ButtonBuilder setLabel(String[] strings){
     this.labels = strings;
-    this.rowSize = Math.floor((this.labels.length-1)/this.colSize)+1;
+    this.rowSize = int((this.labels.length-1)/this.colSize)+1;
     this.size = calcBtnSize();
     return this;
   }

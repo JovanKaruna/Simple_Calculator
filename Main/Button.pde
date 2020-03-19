@@ -1,5 +1,3 @@
-package button;
-
 color BTN_DEFAULT = color(245, 190, 25); // Orange
 color BTN_PRESSED = color(230, 170, 20); // dark Orange
 color BTN_HOVER = color(250, 200, 30); // light Orange
@@ -9,9 +7,9 @@ color NUMBTN_PRESSED = color(240);
 color NUMBTN_HOVER = color(255);
 
 abstract class Button {
-  String label;
-  PVector pos, size;
-  color c, cDefault, cPressed, cHover;
+  String label; //angka, simbol atau huruf
+  PVector pos, size; 
+  color c, cDefault, cPressed, cHover; //warna label dan tombol
   float roundness;
   float btnTextSize;
   boolean isPressed;
@@ -31,7 +29,7 @@ abstract class Button {
     this.cDefault = BTN_DEFAULT;
     this.cPressed = BTN_PRESSED;
     this.cHover = BTN_HOVER;
-    this.btnTextSize = 25;
+    this.btnTextSize = min(this.size.x, this.size.y)/2.5;
   }
   
   public void display() {
@@ -39,7 +37,6 @@ abstract class Button {
         if(mousePressed){
           // biar jalannya cuma 1x
           if(!isPressed){
-            this.isPressed = true;
             this.c = cPressed;
             this.onClick();
           }
@@ -49,7 +46,7 @@ abstract class Button {
           this.c = cHover;
         }
     } else {
-        this.c = cDefault;
+      this.c = cDefault;
     }
 
     textSize(this.btnTextSize);

@@ -1,4 +1,0 @@
-package expression;
-interface IUnaryExpression {
-
-}

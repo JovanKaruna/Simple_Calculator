@@ -1,5 +1,3 @@
-package button;
-
 // using Strategy Pattern https://www.tutorialspoint.com/design_pattern/strategy_pattern.htm
 class FunctionButton extends Button{
     Function function;
