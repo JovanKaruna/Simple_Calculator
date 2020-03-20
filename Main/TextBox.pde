@@ -71,6 +71,7 @@ class TextBox{
     this.labelAnswer = "0";
     this.isError = false;
     this.isOff = false;
+    clearMemory();
   }
 
   public void backspace(){
@@ -88,12 +89,31 @@ class TextBox{
       }
     }
   }
+
+  public void pushMemory() {
+    float f = Float.parseFloat(this.labelAnswer);
+    memory.add(f);
+  }
+
+  public void pullMemory() {
+    if (memory.size() != 0) {
+      float f = memory.remove();
+      this.labelAnswer = Float.toString(f);
+    }
+  }
+  
+  public void clearMemory() {
+     while (memory.size() > 0) {
+        memory.remove(); 
+     }  
+  }  
+
   public void off() {
       this.isOff = true;
       this.labelExpression = "";
       this.labelAnswer = "";
       lastAns = "";
-      //MC MR dihilangin
+      clearMemory();
   }
 
   public void eval() {

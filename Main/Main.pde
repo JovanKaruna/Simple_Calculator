@@ -1,10 +1,11 @@
-// import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Queue;
 
 //final PVector aspectRatio = new PVector(9, 16);
 //final float screenSize = 48;
 View view;
 String lastAns = "";
-// Queue<Expression> memory;
+Queue<Float> memory;
 
 
 void setup(){
@@ -23,7 +24,7 @@ void setup(){
   noStroke();
   smooth();
   view = new View();
-  // memory = new ArrayList<Integer>();
+  memory = new LinkedList<Float>();
   // memory.add(1);
   // System.out.println(memory.peek());
 }
