@@ -7,7 +7,6 @@ View view;
 String lastAns = "";
 Queue<Float> memory;
 
-
 void setup(){
   // WEB:
   //size(aspectRatio.x*screenSize, aspectRatio.y*screenSize);

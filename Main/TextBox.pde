@@ -88,7 +88,7 @@ class TextBox{
         this.labelAnswer = this.labelAnswer.substring(0,this.labelAnswer.length() - 1);
       }
     }
-  }
+  } 
 
   public void pushMemory() {
     float f = Float.parseFloat(this.labelAnswer);
@@ -98,7 +98,13 @@ class TextBox{
   public void pullMemory() {
     if (memory.size() != 0) {
       float f = memory.remove();
-      this.labelAnswer = Float.toString(f);
+      int integers = (int) f;
+
+      if (integers == f) {
+        this.labelAnswer = Integer.toString(integers);
+      } else /* integers != f */ {
+        this.labelAnswer = Float.toString(f);
+      }
     }
   }
   
