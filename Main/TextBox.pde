@@ -11,6 +11,7 @@ class TextBox{
   color c, cExpression, cAnswer;
   String labelExpression;
   String labelAnswer;
+  boolean isAnswered;
   boolean isError;
   boolean isOff;
 
@@ -24,6 +25,7 @@ class TextBox{
     this.textSizeAnswer = this.size.y / 2.5;
     this.cExpression = TEXTBOX_EXPRESSION;
     this.cAnswer = TEXTBOX_ANSWER;
+    this.isAnswered = false;
     this.isError = false;
     this.isOff = false;
   }
@@ -62,6 +64,7 @@ class TextBox{
           this.labelAnswer = s;
         else
           this.labelAnswer += s;
+        this.isAnswered = false;
       }
     }
   }
@@ -91,8 +94,22 @@ class TextBox{
   } 
 
   public void pushMemory() {
-    float f = Float.parseFloat(this.labelAnswer);
-    memory.add(f);
+    try {
+      if (!this.isError) {
+        if (this.isAnswered) {
+          float f = Float.parseFloat(this.labelAnswer);
+          memory.add(f);
+        } else /* !this.isAnswered */ {
+          throw new MemoryException("Belum di-\"eval\"");
+        }  
+      }
+      else /* this.isError */ {
+        throw new MemoryException("Masih error");
+      }
+    } catch (Exception e) {
+      this.labelExpression = e.getMessage();
+      this.isError = true;
+    }
   }
 
   public void pullMemory() {
@@ -100,7 +117,7 @@ class TextBox{
       float f = memory.remove();
       int integers = (int) f;
 
-      if (integers == f) {
+      if (integers == f) { //mengecek apakah bisa menjadi integer atau tidak
         this.labelAnswer = Integer.toString(integers);
       } else /* integers != f */ {
         this.labelAnswer = Float.toString(f);
@@ -134,7 +151,8 @@ class TextBox{
         if(this.labelAnswer.contains(".")&&((this.labelAnswer.charAt(0) >= '1' &&this.labelAnswer.charAt(0)<='9')||(this.labelAnswer.charAt(0)=='-' && this.labelAnswer.charAt(1)!='0'))){
           int index = this.labelAnswer.indexOf(".");
           this.labelAnswer = this.labelAnswer.substring(0,min(this.labelAnswer.length(), index+5));
-        } 
+        }
+        this.isAnswered = true; 
       } catch (Exception e) {
         this.labelExpression = e.getMessage();
         this.isError = true;
