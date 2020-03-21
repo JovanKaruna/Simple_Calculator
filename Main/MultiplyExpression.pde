@@ -2,6 +2,7 @@ class MultiplyExpression extends BinaryExpression {
   MultiplyExpression(Expression front, Expression end){
     super(front, end);
   }
+  
   public float solve() throws Exception{
     try{
       float ans = this.front.solve() * this.end.solve();

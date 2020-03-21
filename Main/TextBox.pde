@@ -74,7 +74,7 @@ class TextBox{
     this.labelAnswer = "0";
     this.isError = false;
     this.isOff = false;
-    clearMemory();
+    this.clearMemory();
   }
 
   public void backspace(){
@@ -93,7 +93,7 @@ class TextBox{
     }
   } 
 
-  public void pushMemory() {
+  public void pushMemory(){
     try {
       if (!this.isError) {
         if (this.isAnswered) {
@@ -102,8 +102,7 @@ class TextBox{
         } else /* !this.isAnswered */ {
           throw new MemoryException("Belum di-\"eval\"");
         }  
-      }
-      else /* this.isError */ {
+      } else /* this.isError */ {
         throw new MemoryException("Masih error");
       }
     } catch (Exception e) {
@@ -112,16 +111,23 @@ class TextBox{
     }
   }
 
-  public void pullMemory() {
-    if (memory.size() != 0) {
-      float f = memory.remove();
-      int integers = (int) f;
-
-      if (integers == f) { //mengecek apakah bisa menjadi integer atau tidak
-        this.labelAnswer = Integer.toString(integers);
-      } else /* integers != f */ {
-        this.labelAnswer = Float.toString(f);
+  public void pullMemory(){
+    try{
+      if (memory.size() != 0) {
+        float f = memory.remove();
+        int integers = (int) f;
+  
+        if (integers == f) { //mengecek apakah bisa menjadi integer atau tidak
+          this.labelAnswer += Integer.toString(integers);
+        } else /* integers != f */ {
+          this.labelAnswer += Float.toString(f);
+        }
+      } else {
+        throw new MemoryException("Memory is empty"); 
       }
+    } catch (MemoryException e){
+      this.labelExpression = e.getMessage();
+      this.isError = true;
     }
   }
   
@@ -136,7 +142,7 @@ class TextBox{
       this.labelExpression = "";
       this.labelAnswer = "";
       lastAns = "";
-      clearMemory();
+      this.clearMemory();
   }
 
   public void eval() {
@@ -148,7 +154,7 @@ class TextBox{
         this.labelAnswer = String.valueOf(new ExpressionBuilder(this.labelAnswer).parse().solve());
         this.labelExpression += " = " + this.labelAnswer;
         lastAns = this.labelAnswer;
-        if(this.labelAnswer.contains(".")&&((this.labelAnswer.charAt(0) >= '1' &&this.labelAnswer.charAt(0)<='9')||(this.labelAnswer.charAt(0)=='-' && this.labelAnswer.charAt(1)!='0'))){
+        if(this.labelAnswer.contains(".")&&((this.labelAnswer.charAt(0) >= '1' && this.labelAnswer.charAt(0)<='9')||(this.labelAnswer.charAt(0)=='-' && this.labelAnswer.charAt(1)!='0'))){
           int index = this.labelAnswer.indexOf(".");
           this.labelAnswer = this.labelAnswer.substring(0,min(this.labelAnswer.length(), index+5));
         }

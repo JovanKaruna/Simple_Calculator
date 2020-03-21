@@ -3,6 +3,7 @@ import java.util.HashMap;
 class ExpressionBuilder{
   String input;
   String[] oprPrio;
+  HashMap<String, Expression> opr;
   int i;
 
   ExpressionBuilder(String s){
@@ -31,6 +32,7 @@ class ExpressionBuilder{
       this.input = this.input.substring(0, 0) + "&" + this.input.substring(1);
     }
     this.input = this.input.replace("-&", "+");
+    System.out.println(this.input);
 
     // rekursif
     try{
@@ -86,9 +88,16 @@ class ExpressionBuilder{
     if(!Float.isNaN(float(inp))){
       return new TerminalExpression(float(inp));
     }
-    //System.out.println(inp.substring(0));
-    if(inp.charAt(0) == '&' && (inp.equals(str(float(inp.substring(1)))) || this.endsWithZeros(inp.substring(1)))){
-      return new NegativeExpression(new TerminalExpression(float(inp.substring(1))));
+    //System.out.println(inp.substring(2));
+    if(inp.charAt(0) == '&'){
+      
+      if(!Float.isNaN(float(inp.substring(1))) || this.endsWithZeros(inp.substring(1))){
+        return new NegativeExpression(new TerminalExpression(float(inp.substring(1))));
+      } else if (inp.charAt(1) == '√'){
+        if(!Float.isNaN(float(inp.substring(2))) || this.endsWithZeros(inp.substring(2))){
+          return new NegativeExpression(new RootExpression(new TerminalExpression(float(inp.substring(2)))));
+        }
+      }
     }
     if(inp.equals("ans")){
       if(lastAns.length() == 0){

@@ -7,6 +7,6 @@ class FunctionButton extends Button{
     }
 
     protected void onClick(){
-      this.function.go();
+       this.function.go();
     }
 }
