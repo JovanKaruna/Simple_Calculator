@@ -4,6 +4,10 @@ This project is used to make calculator with GUI using Object-Oriented Programmi
 ## Using
 We are using java language and processing library. We also use PApplet to make it easier using GUI. 
 
+### Screenshot of our Calculator
+<img src="docs/Screenshot1.jpg" height="300">
+<img src="docs/Screenshot2.jpg" height="300">
+
 ## Code Structure
 ```
 ├───app
