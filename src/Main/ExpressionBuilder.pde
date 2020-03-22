@@ -85,12 +85,13 @@ class ExpressionBuilder{
       throw new ConversionException("Expression incomplete");
     }
     
+    // no unary
     if(!Float.isNaN(float(inp)) && inp.charAt(0) != '+'){
       return new TerminalExpression(float(inp));
     }
-    //System.out.println(inp.substring(2));
+    
+    // negative expr
     if(inp.charAt(0) == '&'){
-      
       if(!Float.isNaN(float(inp.substring(1))) || this.endsWithZeros(inp.substring(1))){
         return new NegativeExpression(new TerminalExpression(float(inp.substring(1))));
       } else if (inp.charAt(1) == '√'){
@@ -99,6 +100,19 @@ class ExpressionBuilder{
         }
       }
     }
+
+    // root expr
+    if(inp.charAt(0) == '√'){
+      if(!Float.isNaN(float(inp.substring(1))) || this.endsWithZeros(inp.substring(1))){
+        return new RootExpression(new TerminalExpression(float(inp.substring(1))));
+      } else if (inp.charAt(1) == '&'){
+        if(!Float.isNaN(float(inp.substring(2))) || this.endsWithZeros(inp.substring(2))){
+          return new RootExpression(new NegativeExpression(new TerminalExpression(float(inp.substring(2)))));
+        }
+      }
+    }
+
+    // ans
     if(inp.equals("ans")){
       if(lastAns.length() == 0){
         throw new ConversionException("Ans is empty");
