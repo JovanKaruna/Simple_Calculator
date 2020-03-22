@@ -12,10 +12,10 @@ void setup() {
   //size(aspectRatio.x*screenSize, aspectRatio.y*screenSize);
 
   // LOCAL:
-  //size(432, 768);
+  size(432, 768);
 
   // ANDROID:
-  fullScreen();
+  //fullScreen();
 
   textAlign(CENTER, CENTER);
   noStroke();

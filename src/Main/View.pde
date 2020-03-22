@@ -32,13 +32,13 @@ public class View{
     this.buttons = new ButtonBuilder(this.btnPos.x, this.btnPos.y, this.btnSize.x, this.btnSize.y, this.colSize, this.btnPad*width)
                   .setLabel(new String[]{
                       "OFF", "%", "ans", "C","AC",
-                      "7", "8", "9", "÷", "MC",
+                      "7", "8", "9", "/", "MC",
                       "4", "5", "6", "x", "MR",
-                      "1", "2", "3", "+", ";",
+                      "1", "2", "3", "+", "√",
                       "0", ".", "=", "-", "^"
                   })
                   .setOps(new String[]{
-                    "+", "-", "x", "÷", "%",  "ans", ";", "^"
+                    "+", "-", "x", "/", "%",  "ans", "√", "^"
                   })
                   .setNumbers(new String[]{
                     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."

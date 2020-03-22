@@ -1,3 +1,0 @@
-interface Function{
-  void go();
-}

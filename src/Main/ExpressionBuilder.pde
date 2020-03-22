@@ -9,7 +9,7 @@ class ExpressionBuilder{
   ExpressionBuilder(String s){
     this.input = s;
     // dari prio terendah
-    this.oprPrio = new String[]{"+", "-", "x", "÷","%", "^", ";", "&"};
+    this.oprPrio = new String[]{"+", "-", "x", "/","%", "^", "√", "&"};
     i = 0;
   }
 
@@ -20,7 +20,7 @@ class ExpressionBuilder{
       char c1 = this.input.charAt(i);
       char c2 = this.input.charAt(i+1);
       char c3 = this.input.charAt(i+2);
-      if(c2 == '-' && ('0' <= c3 && c3 <= '9' || c3 == ';' || c3 == 'a')){
+      if(c2 == '-' && ('0' <= c3 && c3 <= '9' || c3 == '√' || c3 == 'a')){
         for(String opr: oprPrio){
           if(c1 == opr.charAt(0)){
             this.input = this.input.substring(0, i+1) + "&" + this.input.substring(i+2);
@@ -28,7 +28,7 @@ class ExpressionBuilder{
         }
       }
     }
-    if(this.input.charAt(0) == '-' && ('0' <= this.input.charAt(1) && this.input.charAt(1) <= '9' || this.input.charAt(1) == ';' || this.input.charAt(1) == 'a')){
+    if(this.input.charAt(0) == '-' && ('0' <= this.input.charAt(1) && this.input.charAt(1) <= '9' || this.input.charAt(1) == '√' || this.input.charAt(1) == 'a')){
       this.input = this.input.substring(0, 0) + "&" + this.input.substring(1);
     }
     this.input = this.input.replace("-&", "+");
@@ -85,7 +85,7 @@ class ExpressionBuilder{
       throw new ConversionException("Expression incomplete");
     }
     
-    if(!Float.isNaN(float(inp))){
+    if(!Float.isNaN(float(inp)) && inp.charAt(0) != '+'){
       return new TerminalExpression(float(inp));
     }
     //System.out.println(inp.substring(2));
@@ -93,7 +93,7 @@ class ExpressionBuilder{
       
       if(!Float.isNaN(float(inp.substring(1))) || this.endsWithZeros(inp.substring(1))){
         return new NegativeExpression(new TerminalExpression(float(inp.substring(1))));
-      } else if (inp.charAt(1) == ';'){
+      } else if (inp.charAt(1) == '√'){
         if(!Float.isNaN(float(inp.substring(2))) || this.endsWithZeros(inp.substring(2))){
           return new NegativeExpression(new RootExpression(new TerminalExpression(float(inp.substring(2)))));
         }
@@ -128,7 +128,7 @@ class ExpressionBuilder{
         }
         return new MultiplyExpression(this.parseUtil(front), this.parseUtil(end));
       
-      } else if (opr.equals("÷")){
+      } else if (opr.equals("/")){
         if(front.length() == 0  || end.length() == 0){
           throw new ConversionException("Need both side for multiplication");
         }
@@ -146,7 +146,7 @@ class ExpressionBuilder{
         }
         return new SubtractExpression(this.parseUtil(front), this.parseUtil(end));
       
-      } else if(opr.equals(";")){
+      } else if(opr.equals("√")){
         if(front.length() != 0 && front.charAt(0) != '&'){
           throw new ConversionException("Left side of root operator must be empty");
         }
