@@ -53,8 +53,8 @@ This project is used to make calculator with GUI using Object-Oriented Programmi
 ```
 
 ## Prerequisite
-1. Java 1.8
-1. Processing (optional)
+1. [Java 1.8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)
+1. [Processing (optional)](https://processing.org/download/)
 
 ## Compiling and Running
 1. Open `Main.pde` using Processing 3.x
