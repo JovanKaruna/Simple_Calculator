@@ -22,8 +22,6 @@ void setup() {
   smooth();
   view = new View();
   memory = new LinkedList<Float>();
-  // memory.add(1);
-  // System.out.println(memory.peek());
 }
 
 void draw() {
