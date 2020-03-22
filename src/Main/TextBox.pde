@@ -95,16 +95,13 @@ class TextBox{
 
   public void pushMemory(){
     try {
-      if (!this.isError) {
         if (this.isAnswered) {
-          float f = Float.parseFloat(this.labelAnswer);
-          memory.add(f);
+          memory.add(Float.parseFloat(this.labelAnswer));
+          this.labelAnswer = "0";
+          this.labelExpression = "";
         } else /* !this.isAnswered */ {
-          throw new MemoryException("Belum di-\"eval\"");
-        }  
-      } else /* this.isError */ {
-        throw new MemoryException("Masih error");
-      }
+          throw new MemoryException("Not a Number");
+        }
     } catch (Exception e) {
       this.labelExpression = e.getMessage();
       this.isError = true;
@@ -115,12 +112,10 @@ class TextBox{
     try{
       if (memory.size() != 0) {
         float f = memory.remove();
-        int integers = (int) f;
-  
-        if (integers == f) { //mengecek apakah bisa menjadi integer atau tidak
-          this.labelAnswer += Integer.toString(integers);
-        } else /* integers != f */ {
-          this.labelAnswer += Float.toString(f);
+        if(f == int(f)){
+          this.add(str(int(f)));
+        } else {
+          this.add(str(f));
         }
       } else {
         throw new MemoryException("Memory is empty"); 
@@ -157,6 +152,10 @@ class TextBox{
         if(this.labelAnswer.contains(".")&&((this.labelAnswer.charAt(0) >= '1' && this.labelAnswer.charAt(0)<='9')||(this.labelAnswer.charAt(0)=='-' && this.labelAnswer.charAt(1)!='0'))){
           int index = this.labelAnswer.indexOf(".");
           this.labelAnswer = this.labelAnswer.substring(0,min(this.labelAnswer.length(), index+5));
+          float f = Float.parseFloat(this.labelAnswer);
+          if (f == int(f)) { //mengecek apakah bisa menjadi integer atau tidak
+            this.labelAnswer = str(int(f));
+          }
         }
         this.isAnswered = true; 
       } catch (Exception e) {
