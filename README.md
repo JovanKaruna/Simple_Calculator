@@ -1,7 +1,5 @@
-# Tubes_OOP_Calculator
+# Simple Calculator using Java Processing
 This project is used to make calculator with GUI using Object-Oriented Programming. Our calculator can run on multiple platform such as Windows, Linux, and Android.
-
-This program is made using Java 1.8 with Processing library.
 
 ## Screenshots
 <img src="docs/Screenshot1.jpg" height="500"> <img src="docs/Screenshot2.jpg" height= "500">
@@ -54,9 +52,19 @@ This program is made using Java 1.8 with Processing library.
         UnaryExpression.pde
 ```
 
-## Compile and Run
+## Prerequisite
+1. Java 1.8
+1. Processing (optional)
+
+## Compiling and Running
 1. Open `Main.pde` using Processing 3.x
 1. Press `CTRL + R` to Compile and Run the program
+
+## Contributing
+- Feel free to add pull request.
+- Follow the name convention.
+- Give proper documentation / inline comment
+- Please use "this." to refer to class attributes.
 
 ## Created by
 This program is created by:
