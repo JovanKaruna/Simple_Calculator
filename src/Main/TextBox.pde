@@ -94,35 +94,39 @@ class TextBox{
   } 
 
   public void pushMemory(){
-    try {
-        if (this.isAnswered) {
-          memory.add(Float.parseFloat(this.labelAnswer));
-          this.labelAnswer = "0";
-          this.labelExpression = "";
-        } else /* !this.isAnswered */ {
-          throw new MemoryException("Not a Number");
-        }
-    } catch (Exception e) {
-      this.labelExpression = e.getMessage();
-      this.isError = true;
+    if(!this.isOff){
+      try {
+          if (this.isAnswered) {
+            memory.add(Float.parseFloat(this.labelAnswer));
+            this.labelAnswer = "0";
+            this.labelExpression = "";
+          } else /* !this.isAnswered */ {
+            throw new MemoryException("Not a Number");
+          }
+      } catch (Exception e) {
+        this.labelExpression = e.getMessage();
+        this.isError = true;
+      }
     }
   }
 
   public void pullMemory(){
-    try{
-      if (memory.size() != 0) {
-        float f = memory.remove();
-        if(f == int(f)){
-          this.add(str(int(f)));
+    if(!this.isOff){
+      try{
+        if (memory.size() != 0) {
+          float f = memory.remove();
+          if(f == int(f)){
+            this.add(str(int(f)));
+          } else {
+            this.add(str(f));
+          }
         } else {
-          this.add(str(f));
+          throw new MemoryException("Memory is empty"); 
         }
-      } else {
-        throw new MemoryException("Memory is empty"); 
+      } catch (MemoryException e){
+        this.labelExpression = e.getMessage();
+        this.isError = true;
       }
-    } catch (MemoryException e){
-      this.labelExpression = e.getMessage();
-      this.isError = true;
     }
   }
   
